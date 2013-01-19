@@ -336,27 +336,31 @@ fieldset {
   width: 75%;
   max-width: 20em;
 }
+/* line 27, Sass/main.scss */
+.set .error {
+  border: 2px solid red;
+}
 
-/* line 29, Sass/main.scss */
+/* line 32, Sass/main.scss */
 .tag-set label {
   width: 20%;
 }
-/* line 32, Sass/main.scss */
+/* line 35, Sass/main.scss */
 .tag-set .field {
   margin: 0 5%;
   width: 30%;
 }
-/* line 36, Sass/main.scss */
+/* line 39, Sass/main.scss */
 .tag-set .tag {
   width: 10%;
 }
-/* line 39, Sass/main.scss */
+/* line 42, Sass/main.scss */
 .tag-set .tag-label {
   width: 3%;
 }
 
 @media screen and (min-width: 45em) {
-  /* line 45, Sass/main.scss */
+  /* line 48, Sass/main.scss */
   fieldset {
     max-width: 50%;
   }

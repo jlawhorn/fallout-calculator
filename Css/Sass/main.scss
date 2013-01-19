@@ -24,6 +24,9 @@ fieldset {
 		width: 75%;
 		max-width: 20em;
 	}
+	.error {
+		border: 2px solid red;
+	}
 }
 .tag-set {
 	label {
