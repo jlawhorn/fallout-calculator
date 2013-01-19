@@ -1,7 +1,9 @@
 $(document).ready(function(){
 	var chacaterSpecies = $('#chacaterSpecies').val(),
 		chacaterLevel = $('#chacaterLevel').val()
-		$stats = $('.stat');
+		$stats = $('.stat'),
+		currentTagCount = 0,
+		maxTags = 0;
 
 		initializeValues();
 
