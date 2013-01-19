@@ -1,0 +1,48 @@
+@import "compass";
+@import "normalize";
+
+fieldset {
+	padding: 1em;
+	margin: 1em auto;
+}
+
+.set {
+	@include pie-clearfix;
+	margin-bottom: 1em;
+	width: auto;
+	label {
+		display: block;
+		float: left;
+		width: 20%;
+		font-weight: bold;
+	}
+	.field {
+		display: block;
+		float: left;
+		@include box-sizing(border-box);
+		margin-left: 5%;
+		width: 75%;
+		max-width: 20em;
+	}
+}
+.tag-set {
+	label {
+		width: 20%;
+	}
+	.field {
+		margin: 0 5%;
+		width: 30%;
+	}
+	.tag {
+		width: 10%;
+	}
+	.tag-label {
+		width: 3%;
+	}
+}
+
+@media screen and (min-width: 45em) {
+	fieldset {
+		max-width: 50%;
+	}
+}

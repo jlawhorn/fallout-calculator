@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <title>Fallout Pnp character calculator</title>
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" href="Css/main.css" />
+    </head>
+    <body>
+    	<div class="frame">
+    		<header>
+
+    		</header>
+    		<section id="main" class="main">
+    			<form id="calculator">
+    				<fieldset id="general">
+    					<legend>General</legend>
+    					<div class="set">
+    						<label for="chacaterSpecies">Species</label>
+    						<select id="chacaterSpecies" class="field">
+    							<option value="human" selected="selected">Human</option>
+    							<option value="ghoul">Ghoul</option>
+    							<option value="mutant">Mutant</option>
+    							<option value="dog">Dog</option>
+    							<option value="robot">Robot</option>
+    							<option value="deathclaw">Deathclaw</option>
+    						</select>
+    					</div>
+    					<div class="set">
+    						<label for="characterName">Name</label>
+    						<input type="text" id="characterName" class="field" />
+    					</div>
+    					<div class="set">
+    						<label for="characterAge">Age</label>
+    						<input type="number" id="characterAge" class="field" />
+    					</div>
+    					<div class="set">
+    						<label for="characterLevel">Level</label>
+    						<input type="number" id="characterLevel" class="field" />
+    					</div>
+    				</fieldset>
+    				<fieldset id="traits">
+    					<legend>Traits</legend>
+    					<div class="set">
+    						<label for="trait1">Trait</label>
+    						<select id="trait1" class="field">
+    							<option value="" selected="selected" disabled="disabled">Select One</option>
+    							<option value=""></option>
+    						</select>
+    					</div>
+    					<div class="set">
+    						<label for="trait2">Trait</label>
+    						<select id="trait2" class="field">
+    							<option value="" selected="selected" disabled="disabled">Select One</option>
+    							<option value=""></option>
+    						</select>
+    					</div>
+    				</fieldset>
+    				<fieldset id="perks">
+    					<legend>Perk</legend>
+    					<div class="set">
+    						<label for="perk1">Trait</label>
+    						<select id="perk1" class="field">
+    							<option value="" selected="selected" disabled="disabled">Select One</option>
+    							<option value=""></option>
+    						</select>
+    					</div>
+    					<div class="set">
+    						<label for="perk2">Trait</label>
+    						<select id="perk2" class="field">
+    							<option value="" selected="selected" disabled="disabled">Select One</option>
+    							<option value=""></option>
+    						</select>
+    					</div>
+    					<div class="set">
+    						<label for="perk3">Trait</label>
+    						<select id="perk3" class="field">
+    							<option value="" selected="selected" disabled="disabled">Select One</option>
+    							<option value=""></option>
+    						</select>
+    					</div>
+    				</fieldset>
+    				<fieldset id="special">
+    					<legend>Stats - SPECIAL</legend>
+    					<div class="set">
+    						<label for="strength">Strength</label>
+    						<input type="number" id="strength" class="field stat" />
+    					</div>
+    					<div class="set">
+    						<label for="perception">Perception</label>
+    						<input type="number" id="perception" class="field stat" />
+    					</div>
+    					<div class="set">
+    						<label for="endurance">Endurance</label>
+    						<input type="number" id="endurance" class="field stat" />
+    					</div>
+    					<div class="set">
+    						<label for="charisma">Charisma</label>
+    						<input type="number" id="charisma" class="field stat" />
+    					</div>
+    					<div class="set">
+    						<label for="intellegence">Intellegence</label>
+    						<input type="number" id="intellegence" class="field stat" />
+    					</div>
+    					<div class="set">
+    						<label for="agility">Agility</label>
+    						<input type="number" id="agility" class="field stat" />
+    					</div>
+    					<div class="set">
+    						<label for="luck">Luck</label>
+    						<input type="number" id="luck" class="field stat" />
+    					</div>
+    					<hr />
+    					<div class="set">
+    						<label for="statPool">Stat Point Pool</label>
+    						<input type="number" id="statPool" class="field" />
+    					</div>
+    				</fieldset>
+    				<fieldset id="skills">
+    					<legend>Skills</legend>
+    					<div class="set tag-set">
+    						<label for="smallGuns">Small Guns</label>
+    						<input type="number" id="smallGuns" class="field" />
+                            <label for="smallGunsTag" class="tag-label">Tag</label>
+                            <input type="checkbox" id="smallGunsTag" class="tag" />
+    					</div>
+                        <div class="set tag-set">
+                            <label for="bigGuns">Big Guns</label>
+                            <input type="number" id="bigGuns" class="field" />
+                            <label for="bigGunsTag" class="tag-label">Tag</label>
+                            <input type="checkbox" id="bigGunsTag" class="tag" />
+                        </div>
+                        <div class="set tag-set">
+                            <label for="energyWeapons">Energy Weapons</label>
+                            <input type="number" id="energyWeapons" class="field" />
+                            <label for="energyWeaponsTag" class="tag-label">Tag</label>
+                            <input type="checkbox" id="energyWeaponsTag" class="tag" />
+                        </div>
+                        <div class="set tag-set">
+                            <label for="unarmed">Unarmed</label>
+                            <input type="number" id="unarmed" class="field" />
+                            <label for="unarmedTag" class="tag-label">Tag</label>
+                            <input type="checkbox" id="unarmedTag" class="tag" />
+                        </div>
+                        <div class="set tag-set">
+                            <label for="meleeWeapons">Melee Weapons</label>
+                            <input type="number" id="meleeWeapons" class="field" />
+                            <label for="meleeWeaponsTag" class="tag-label">Tag</label>
+                            <input type="checkbox" id="meleeWeaponsTag" class="tag" />
+                        </div>
+                        <div class="set tag-set">
+                            <label for="throwing">Throwing</label>
+                            <input type="number" id="throwing" class="field" />
+                            <label for="throwingTag" class="tag-label">Tag</label>
+                            <input type="checkbox" id="throwingTag" class="tag" />
+                        </div>
+                        <div class="set tag-set">
+                            <label for="firstAid">First Aid</label>
+                            <input type="number" id="firstAid" class="field" />
+                            <label for="firstAidTag" class="tag-label">Tag</label>
+                            <input type="checkbox" id="firstAidTag" class="tag" />
+                        </div>
+                        <div class="set tag-set">
+                            <label for="doctor">Doctor</label>
+                            <input type="number" id="doctor" class="field" />
+                            <label for="doctorTag" class="tag-label">Tag</label>
+                            <input type="checkbox" id="doctorTag" class="tag" />
+                        </div>
+                        <div class="set tag-set">
+                            <label for="lockpick">Lockpick</label>
+                            <input type="number" id="lockpick" class="field" />
+                            <label for="lockpickTag" class="tag-label">Tag</label>
+                            <input type="checkbox" id="lockpick" class="tag" />
+                        </div>
+                        <div class="set tag-set">
+                            <label for="steal">Steal</label>
+                            <input type="number" id="steal" class="field" />
+                            <label for="stealTag" class="tag-label">Tag</label>
+                            <input type="checkbox" id="steal" class="tag" />
+                        </div>
+                        <div class="set tag-set">
+                            <label for="traps">Traps</label>
+                            <input type="number" id="traps" class="field" />
+                            <label for="stealTag" class="tag-label">Tag</label>
+                            <input type="checkbox" id="traps" class="tag" />
+                        </div>
+    					<hr />
+    					<div class="set">
+    						<label for="skillPool">Skill Point Pool</label>
+    						<input type="number" id="skillPool" class="field" />
+    					</div>
+    				</fieldset>
+    				<fieldset id="derived">
+    					<legend>Derived Statistics</legend>
+    					<div class="set">
+    						<label for="actionPoints">Action Points</label>
+    						<input type="number" id="actionPoints" class="field" readonly="readonly" />
+    					</div>
+    					<div class="set">
+    						<label for="carryWeight">Carry Weight</label>
+    						<input type="number" id="carryWeight" class="field" readonly="readonly" />
+    					</div>
+    					<div class="set">
+    						<label for="baseMeleeDamage">Base Melee Damage</label>
+    						<input type="number" id="baseMeleeDamage" class="field" readonly="readonly" />
+    					</div>
+    					<div class="set">
+    						<label for="poisonResist">Poison Resist</label>
+    						<input type="number" id="poisonResist" class="field" readonly="readonly" />
+    					</div>
+    					<div class="set">
+    						<label for="radiationResist">Radiation Resist</label>
+    						<input type="number" id="radiationResist" class="field" readonly="readonly" />
+    					</div>
+    					<div class="set">
+    						<label for="gasResist">Gas Resist</label>
+    						<input type="number" id="gasResist" class="field" readonly="readonly" />
+    					</div>
+    					<div class="set">
+    						<label for="electricResist">Electric Resist</label>
+    						<input type="number" id="electricResist" class="field" readonly="readonly" />
+    					</div>
+    					<div class="set">
+    						<label for="sequence">Sequence</label>
+    						<input type="number" id="sequence" class="field" readonly="readonly" />
+    					</div>
+    					<div class="set">
+    						<label for="healingRate">Healing Rate</label>
+    						<input type="number" id="healingRate" class="field" readonly="readonly" />
+    					</div>
+    					<div class="set">
+    						<label for="critialChance">Critial Chance</label>
+    						<input type="number" id="critialChance" class="field" readonly="readonly" />
+    					</div>
+    					<div class="set">
+    						<label for="baseAc">Base AC</label>
+    						<input type="number" id="baseAc" class="field" readonly="readonly" />
+    					</div>
+    					<div class="set">
+    						<label for="maxHp">Max HP</label>
+    						<input type="number" id="maxHp" class="field" readonly="readonly" />
+    					</div>
+    				</fieldset>
+    				<fieldset>
+    					<input type="submit" value="Calculate" />
+    				</fieldset>
+    			</form>
+    		</section>
+    		<footer>
+    			
+    		</footer>
+    	</div>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script src="Scripts/calculate.js"></script>
+	</body>
+</html>
