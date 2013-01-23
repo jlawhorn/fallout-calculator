@@ -5,6 +5,8 @@ $(document).ready(function(){
 		currentTagCount = 0,
 		maxTags = 0,
 		totalStats = 40,
+		statMin = 1,
+		statMax = 10,
 		statSt = 5,
 		statPe = 5,
 		statEn = 5,
@@ -52,6 +54,8 @@ $(document).ready(function(){
 	function setTotalStats() {
 		if (chacaterSpecies == "human") {
 			totalStats = 40;
+			statMin = 1;
+			statMax = 10;
 		}
 	}
 
@@ -121,14 +125,23 @@ $(document).ready(function(){
 		var $target = $(target);
 		var newStatVal = $target.val(),
 			attributeName = $target.data('attrib');
-		if (newStatVal > 10 || newStatVal < 1) {
+		if (newStatVal > statMax || newStatVal < statMin) {
 			setStatPointsFromVars();
 		} else {
 			setStatPointsFromDom();
 		}
 	}
 
-	function calcSmallGuns () {
-
+	function calcSmallGuns() {
+		smallGuns = 5 + (4 * statAg);
 	}
+
+	function calcBigGuns() {
+		bigGuns = 0 + (2 * statAg);
+	}
+
+	function calcEnergyWeapons {
+		energyWeapons = 0 + (2 * statAg);
+	}
+
 });
