@@ -144,4 +144,68 @@ $(document).ready(function(){
 		energyWeapons = 0 + (2 * statAg);
 	}
 
+	function calcUnarmed {
+		unarmed = 0 + (2 * statAg);
+	}
+
+	function calcMeleeWeapons {
+		meleeWeapons = 0 + (2 * statAg);
+	}
+
+	function calcThrowingWeapons {
+		throwingWeapons = 0 + (2 * statAg);
+	}
+
+	function calcFirstAid {
+		firstAid = 0 + (2 * statAg);
+	}
+
+	function calcDoctor {
+		doctor = 0 + (2 * statAg);
+	}
+
+	function calcSneak {
+		sneak = 0 + (2 * statAg);
+	}
+
+	function calcLockpick {
+		lockpick = 0 + (2 * statAg);
+	}
+
+	function calcSteal {
+		steal = 0 + (2 * statAg);
+	}
+	
+	function calcTraps {
+		traps = 0 + (2 * statAg);
+	}
+	
+	function calcScience {
+		science = 0 + (2 * statAg);
+	}
+	
+	function calcRepair {
+		repair = 0 + (2 * statAg);
+	}
+	
+	function calcPilot {
+		pilot = 0 + (2 * statAg);
+	}
+	
+	function calcSpeech {
+		speech = 0 + (2 * statAg);
+	}
+	
+	function calcBarter {
+		barter = 0 + (2 * statAg);
+	}
+	
+	function calcGambling {
+		gambling = 0 + (2 * statAg);
+	}
+
+	function calcOutdoorsman {
+		outdoorsman = 0 + (2 * statAg);
+	}
+
 });
