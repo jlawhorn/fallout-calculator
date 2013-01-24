@@ -33,7 +33,19 @@ $(document).ready(function(){
 		speech = 0,
 		barter = 0,
 		gambling = 0,
-		outdoorsman = 0;
+		outdoorsman = 0,
+		actionPoints = 0,
+		carryWeight = 0,
+		baseMeleeDamage = 0,
+		poisonResist = 0,
+		radiationResist = 0,
+		gasResist = 0,
+		electricResist = 0,
+		sequence = 0,
+		healingRate = 0,
+		criticalChance = 0,
+		baseAc = 0,
+		maxHp = 0;
 
 		initializeValues();
 
@@ -140,72 +152,120 @@ $(document).ready(function(){
 		bigGuns = 0 + (2 * statAg);
 	}
 
-	function calcEnergyWeapons {
+	function calcEnergyWeapons() {
 		energyWeapons = 0 + (2 * statAg);
 	}
 
-	function calcUnarmed {
-		unarmed = 0 + (2 * statAg);
+	function calcUnarmed() {
+		unarmed = 30 + 2 * (statAg * statSt);
 	}
 
-	function calcMeleeWeapons {
-		meleeWeapons = 0 + (2 * statAg);
+	function calcMeleeWeapons() {
+		meleeWeapons = 20 + 2 * (statAg * statSt);
 	}
 
-	function calcThrowingWeapons {
-		throwingWeapons = 0 + (2 * statAg);
+	function calcThrowingWeapons() {
+		throwingWeapons = 0 + (4 * statAg);
 	}
 
-	function calcFirstAid {
-		firstAid = 0 + (2 * statAg);
+	function calcFirstAid() {
+		firstAid = 2 * (statPe + statIn);
 	}
 
-	function calcDoctor {
-		doctor = 0 + (2 * statAg);
+	function calcDoctor() {
+		doctor = 5 + (statPe + statIn);
 	}
 
-	function calcSneak {
-		sneak = 0 + (2 * statAg);
+	function calcSneak() {
+		sneak = 5 + (3 * statAg);
 	}
 
-	function calcLockpick {
-		lockpick = 0 + (2 * statAg);
+	function calcLockpick() {
+		lockpick = 10 + (statPe + statAg);
 	}
 
-	function calcSteal {
-		steal = 0 + (2 * statAg);
+	function calcSteal() {
+		steal = 0 + (3 * statAg);
 	}
 	
-	function calcTraps {
-		traps = 0 + (2 * statAg);
+	function calcTraps() {
+		traps = 0 + (statPe + statAg);
 	}
 	
-	function calcScience {
-		science = 0 + (2 * statAg);
+	function calcScience() {
+		science = 0 + (4 * statIn);
 	}
 	
-	function calcRepair {
-		repair = 0 + (2 * statAg);
+	function calcRepair() {
+		repair = 0 + (3 * statIn);
 	}
 	
-	function calcPilot {
-		pilot = 0 + (2 * statAg);
+	function calcPilot() {
+		pilot = 0 + (2 * (statAg + statPe));
 	}
 	
-	function calcSpeech {
-		speech = 0 + (2 * statAg);
+	function calcSpeech() {
+		speech = 0 + (5 * statCh);
 	}
 	
-	function calcBarter {
-		barter = 0 + (2 * statAg);
+	function calcBarter() {
+		barter = 0 + (4 * statCh);
 	}
 	
-	function calcGambling {
-		gambling = 0 + (2 * statAg);
+	function calcGambling() {
+		gambling = 0 + (5 * statLk);
 	}
 
-	function calcOutdoorsman {
-		outdoorsman = 0 + (2 * statAg);
+	function calcOutdoorsman() {
+		outdoorsman = 0 + (2 * (statEn + statIn));
+	}
+
+	function calcActionPoints() {
+		actionPoints = 5 + (statAg / 2);
+	}
+
+	function calcCarryWeight() {
+		carryWeight = 25 + (25 * statSt);
+	}
+
+	function calcBaseMeleeDamage() {
+		baseMeleeDamage = statSt - 5;
+	}
+
+	function calcPoisonResist() {
+		poisonResist = 5 * statEn;
+	}
+
+	function calcRadiationResist() {
+		radiationResist = 2 * statEn;
+	}
+
+	function calcGasResist() {
+		gasResist = 0;
+	}
+
+	function calcElectricResist() {
+		electricResist = 0;
+	}
+
+	function calcSequence() {
+		sequence = 2 * statPe;
+	}
+
+	function calcHealingRate() {
+		healingRate = 5 / statEn;
+	}
+
+	function calcCriticalChance() {
+		criticalChance = statLk;	
+	}
+
+	function calcBaseAc() {
+		baseAc = 0;
+	}
+
+	function calcMaxHp() {
+		maxHp = 0;
 	}
 
 });
