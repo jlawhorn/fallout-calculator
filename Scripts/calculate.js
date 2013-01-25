@@ -1,24 +1,27 @@
 $(document).ready(function(){
-	var chacaterSpecies = "human",
-		chacaterLevel = 1,
-		$stats = $('.stat'),
+	var defaults = {
+		chacaterSpecies : 'human',
+		chacaterLevel : 1
+	};
+	var options = {};
+	var $stats = $('.stat'),
 		currentTagCount = 0,
 		maxTags = 0,
 		totalStats = 40,
-		stMin = 1,
-		stMax = 10,
-		peMin = 1,
-		peMax = 10,
-		enMin = 1,
-		enMax = 10,
-		chMin = 1,
-		chMax = 10,
-		inMin = 1,
-		inMax = 10,
-		agMin = 1,
-		agMax = 10,
-		lkMin = 1,
-		lkMax = 10,
+		stMin = 0,
+		stMax = 0,
+		peMin = 0,
+		peMax = 0,
+		enMin = 0,
+		enMax = 0,
+		chMin = 0,
+		chMax = 0,
+		inMin = 0,
+		inMax = 0,
+		agMin = 0,
+		agMax = 0,
+		lkMin = 0,
+		lkMax = 0,
 		statSt = 5,
 		statPe = 5,
 		statEn = 5,
@@ -58,12 +61,14 @@ $(document).ready(function(){
 		criticalChance = 0,
 		baseAc = 0,
 		maxHp = 0,
-		racialElectricyResistance = 10,
+		racialElectricyResistance = 0,
 		racialRadiationResistance = 0,
 		racialPosionResistance = 0,
 		racialHpMod = 0,
-		racialPerkRate = 3,
+		racialPerkRate = 0,
 		racialDamageResistance = 0;
+
+	var character = $.extend({}, defaults, options);
 
 		initializeValues();
 
@@ -83,7 +88,7 @@ $(document).ready(function(){
 
 	function initializeValues() {
 		cacluateInitialStatPoints();
-		updateSpecies(chacaterSpecies);
+		updateSpecies("human");
 		setStatPointsFromDom();
 		calculateSkills();
 		calculateDerives();
