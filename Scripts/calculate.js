@@ -1,76 +1,79 @@
-$(document).ready(function(){
-	var defaults = {
-		chacaterSpecies : 'human',
-		chacaterLevel : 1
+(function ($) {
+	var character,
+	defaults = {
+		species : 'human',
+		level : 1,
+		currentTagCount : 0,
+		maxTags : 3,
+		totalStats : 40,
+		stMin : 0,
+		stMax : 0,
+		peMin : 0,
+		peMax : 0,
+		enMin : 0,
+		enMax : 0,
+		chMin : 0,
+		chMax : 0,
+		inMin : 0,
+		inMax : 0,
+		agMin : 0,
+		agMax : 0,
+		lkMin : 0,
+		lkMax : 0,
+		statSt : 0,
+		statPe : 0,
+		statEn : 0,
+		statCh : 0,
+		statIn : 0,
+		statAg : 0,
+		statLk : 0,
+		statPool : 0,
+		smallGuns : 0,
+		bigGuns : 0,
+		energyWeapons : 0,
+		unarmed : 0,
+		meleeWeapons : 0,
+		throwing : 0,
+		firstAid : 0,
+		doctor : 0,
+		sneak : 0,
+		lockpick : 0,
+		steal : 0,
+		traps : 0,
+		science : 0,
+		repair : 0,
+		pilot : 0,
+		speech : 0,
+		barter : 0,
+		gambling : 0,
+		outdoorsman : 0,
+		skillPool : 0,
+		actionPoints : 0,
+		carryWeight : 0,
+		baseMeleeDamage : 0,
+		poisonResist : 0,
+		radiationResist : 0,
+		gasResist : 0,
+		electricResist : 0,
+		sequence : 0,
+		healingRate : 0,
+		criticalChance : 0,
+		baseAc : 0,
+		maxHp : 0,
+		racialElectricResistance : 0,
+		racialRadiationResistance : 0,
+		racialPosionResistance : 0,
+		racialGasResistance : 0,
+		racialHpMod : 0,
+		racialPerkRate : 0,
+		racialDamageResistance : 0
 	};
 	var options = {};
-	var $stats = $('.stat'),
-		currentTagCount = 0,
-		maxTags = 0,
-		totalStats = 40,
-		stMin = 0,
-		stMax = 0,
-		peMin = 0,
-		peMax = 0,
-		enMin = 0,
-		enMax = 0,
-		chMin = 0,
-		chMax = 0,
-		inMin = 0,
-		inMax = 0,
-		agMin = 0,
-		agMax = 0,
-		lkMin = 0,
-		lkMax = 0,
-		statSt = 5,
-		statPe = 5,
-		statEn = 5,
-		statCh = 5,
-		statIn = 5,
-		statAg = 5,
-		statLk = 5,
-		statPool = 5,
-		smallGuns = 0,
-		bigGuns = 0,
-		energyWeapons = 0,
-		unarmed = 0,
-		meleeWeapons = 0,
-		throwingWeapons = 0,
-		firstAid = 0,
-		doctor = 0,
-		sneak = 0,
-		lockpick = 0,
-		steal = 0,
-		traps = 0,
-		science = 0,
-		repair = 0,
-		pilot = 0,
-		speech = 0,
-		barter = 0,
-		gambling = 0,
-		outdoorsman = 0,
-		actionPoints = 0,
-		carryWeight = 0,
-		baseMeleeDamage = 0,
-		poisonResist = 0,
-		radiationResist = 0,
-		gasResist = 0,
-		electricResist = 0,
-		sequence = 0,
-		healingRate = 0,
-		criticalChance = 0,
-		baseAc = 0,
-		maxHp = 0,
-		racialElectricyResistance = 0,
-		racialRadiationResistance = 0,
-		racialPosionResistance = 0,
-		racialHpMod = 0,
-		racialPerkRate = 0,
-		racialDamageResistance = 0;
+	var $stats = $('.stat');
 
-	var character = $.extend({}, defaults, options);
+	character = $.extend({}, defaults, options);
 
-		initializeValues();
+	initializeValues();
 
 	$stats.on('change', function(e){
 		changeStats(this);
@@ -87,9 +90,8 @@ $(document).ready(function(){
 	});
 
 	function initializeValues() {
-		cacluateInitialStatPoints();
-		updateSpecies("human");
-		setStatPointsFromDom();
+		updateSpecies(character.species);
+		setStatPointsFromVars();
 		calculateSkills();
 		calculateDerives();
 	}
@@ -98,228 +100,235 @@ $(document).ready(function(){
 		setStatPointsFromVars();
 		calculateSkills();
 		calculateDerives();
+		console.log(character);
 	}
 
 	function updateSpecies(newSpecies) {
-		chacaterSpecies = newSpecies;
+		character.species = newSpecies;
 		switch(newSpecies) {
 			case "human":
-				stMin = 1;
-				stMax = 10;
-				peMin = 1;
-				peMax = 10;
-				enMin = 1;
-				enMax = 10;
-				chMin = 1;
-				chMax = 10;
-				inMin = 1;
-				inMax = 10;
-				agMin = 1;
-				agMax = 10;
-				lkMin = 1;
-				lkMax = 10;
-				statSt = 5;
-				statPe = 5;
-				statEn = 5;
-				statCh = 5;
-				statIn = 5;
-				statAg = 5;
-				statLk = 5;
-				statPool = 5;
-				racialElectricyResistance = 10;
-				racialRadiationResistance = 0;
-				racialPosionResistance = 0;
-				racialHpMod = 0;
-				racialPerkRate = 3;
-				racialDamageResistance = 0;
+				character.stMin = 1;
+				character.stMax = 10;
+				character.peMin = 1;
+				character.peMax = 10;
+				character.enMin = 1;
+				character.enMax = 10;
+				character.chMin = 1;
+				character.chMax = 10;
+				character.inMin = 1;
+				character.inMax = 10;
+				character.agMin = 1;
+				character.agMax = 10;
+				character.lkMin = 1;
+				character.lkMax = 10;
+				character.statSt = 5;
+				character.statPe = 5;
+				character.statEn = 5;
+				character.statCh = 5;
+				character.statIn = 5;
+				character.statAg = 5;
+				character.statLk = 5;
+				character.statPool = 5;
+				character.racialElectricResistance = 10;
+				character.racialRadiationResistance = 0;
+				character.racialPosionResistance = 0;
+				character.racialGasResistance = 0;
+				character.racialHpMod = 0;
+				character.racialPerkRate = 3;
+				character.racialDamageResistance = 0;
+				console.log("set human");
 			break;
 			case "ghoul":
-				stMin = 1;
-				stMax = 8;
-				peMin = 4;
-				peMax = 13;
-				enMin = 1;
-				enMax = 10;
-				chMin = 1;
-				chMax = 10;
-				inMin = 2;
-				inMax = 10;
-				agMin = 1;
-				agMax = 6;
-				lkMin = 5;
-				lkMax = 12;
-				statSt = 5;
-				statPe = 5;
-				statEn = 5;
-				statCh = 5;
-				statIn = 5;
-				statAg = 5;
-				statLk = 5;
-				statPool = 5;
-				racialElectricyResistance = 0;
-				racialRadiationResistance = 80;
-				racialPosionResistance = 30;
-				racialHpMod = 0;
-				racialPerkRate = 4;
-				racialDamageResistance = 0;
+				character.stMin = 1;
+				character.stMax = 8;
+				character.peMin = 4;
+				character.peMax = 13;
+				character.enMin = 1;
+				character.enMax = 10;
+				character.chMin = 1;
+				character.chMax = 10;
+				character.inMin = 2;
+				character.inMax = 10;
+				character.agMin = 1;
+				character.agMax = 6;
+				character.lkMin = 5;
+				character.lkMax = 12;
+				character.statSt = 5;
+				character.statPe = 5;
+				character.statEn = 5;
+				character.statCh = 5;
+				character.statIn = 5;
+				character.statAg = 5;
+				character.statLk = 5;
+				character.statPool = 5;
+				character.racialElectricResistance = 0;
+				character.racialRadiationResistance = 80;
+				character.racialPosionResistance = 30;
+				character.racialGasResistance = 0;
+				character.racialHpMod = 0;
+				character.racialPerkRate = 4;
+				character.racialDamageResistance = 0;
+				console.log("set ghoul");
 			break;
 			case "mutant":
-				stMin = 5;
-				stMax = 13;
-				peMin = 1;
-				peMax = 11;
-				enMin = 4;
-				enMax = 11;
-				chMin = 1;
-				chMax = 7;
-				inMin = 1;
-				inMax = 11;
-				agMin = 1;
-				agMax = 8;
-				lkMin = 1;
-				lkMax = 10;
-				statSt = 5;
-				statPe = 5;
-				statEn = 5;
-				statCh = 5;
-				statIn = 5;
-				statAg = 5;
-				statLk = 5;
-				statPool = 5;
-				racialElectricyResistance = 0;
-				racialRadiationResistance = 50;
-				racialPosionResistance = 20;
-				racialHpMod = 2;
-				racialPerkRate = 4;
-				racialDamageResistance = 25;
+				character.stMin = 5;
+				character.stMax = 13;
+				character.peMin = 1;
+				character.peMax = 11;
+				character.enMin = 4;
+				character.enMax = 11;
+				character.chMin = 1;
+				character.chMax = 7;
+				character.inMin = 1;
+				character.inMax = 11;
+				character.agMin = 1;
+				character.agMax = 8;
+				character.lkMin = 1;
+				character.lkMax = 10;
+				character.statSt = 5;
+				character.statPe = 5;
+				character.statEn = 5;
+				character.statCh = 5;
+				character.statIn = 5;
+				character.statAg = 5;
+				character.statLk = 5;
+				character.statPool = 5;
+				character.racialElectricResistance = 0;
+				character.racialRadiationResistance = 50;
+				character.racialPosionResistance = 20;
+				character.racialGasResistance = 0;
+				character.racialHpMod = 2;
+				character.racialPerkRate = 4;
+				character.racialDamageResistance = 25;
 			break;
 			case "dog":
-				stMin = 1;
-				stMax = 7;
-				peMin = 4;
-				peMax = 14;
-				enMin = 1;
-				enMax = 6;
-				chMin = 1;
-				chMax = 5;
-				inMin = 1;
-				inMax = 3;
-				agMin = 1;
-				agMax = 15;
-				lkMin = 1;
-				lkMax = 10;
-				statSt = 5;
-				statPe = 5;
-				statEn = 5;
-				statCh = 5;
-				statIn = 5;
-				statAg = 5;
-				statLk = 5;
-				statPool = 5;
-				racialElectricyResistance = 50;
-				racialRadiationResistance = 0;
-				racialPosionResistance = 0;
-				racialHpMod = 0;
-				racialPerkRate = 2;
-				racialDamageResistance = 0;
+				character.stMin = 1;
+				character.stMax = 7;
+				character.peMin = 4;
+				character.peMax = 14;
+				character.enMin = 1;
+				character.enMax = 6;
+				character.chMin = 1;
+				character.chMax = 5;
+				character.inMin = 1;
+				character.inMax = 3;
+				character.agMin = 1;
+				character.agMax = 15;
+				character.lkMin = 1;
+				character.lkMax = 10;
+				character.statSt = 5;
+				character.statPe = 5;
+				character.statEn = 5;
+				character.statCh = 5;
+				character.statIn = 5;
+				character.statAg = 5;
+				character.statLk = 5;
+				character.statPool = 5;
+				character.racialElectricResistance = 50;
+				character.racialRadiationResistance = 0;
+				character.racialPosionResistance = 0;
+				character.racialGasResistance = 0;
+				character.racialHpMod = 0;
+				character.racialPerkRate = 2;
+				character.racialDamageResistance = 0;
 			break;
 			case "robot":
-				stMin = 7;
-				stMax = 12;
-				peMin = 7;
-				peMax = 12;
-				enMin = 7;
-				enMax = 12;
-				chMin = 1;
-				chMax = 1;
-				inMin = 1;
-				inMax = 12;
-				agMin = 1;
-				agMax = 12;
-				lkMin = 5;
-				lkMax = 5;
-				statSt = 7;
-				statPe = 7;
-				statEn = 7;
-				statCh = 1;
-				statIn = 5;
-				statAg = 5;
-				statLk = 5;
-				statPool = 3;
-				racialElectricyResistance = 0;
-				racialRadiationResistance = 100;
-				racialPosionResistance = 100;
-				racialHpMod = 0;
-				racialPerkRate = 0;
-				racialDamageResistance = 40;
+				character.stMin = 7;
+				character.stMax = 12;
+				character.peMin = 7;
+				character.peMax = 12;
+				character.enMin = 7;
+				character.enMax = 12;
+				character.chMin = 1;
+				character.chMax = 1;
+				character.inMin = 1;
+				character.inMax = 12;
+				character.agMin = 1;
+				character.agMax = 12;
+				character.lkMin = 5;
+				character.lkMax = 5;
+				character.statSt = 7;
+				character.statPe = 7;
+				character.statEn = 7;
+				character.statCh = 1;
+				character.statIn = 5;
+				character.statAg = 5;
+				character.statLk = 5;
+				character.statPool = 3;
+				character.racialElectricResistance = -10;
+				character.racialRadiationResistance = 100;
+				character.racialPosionResistance = 100;
+				character.racialGasResistance = 100;
+				character.racialHpMod = 0;
+				character.racialPerkRate = 0;
+				character.racialDamageResistance = 40;
 			break;
 			case "deathclaw":
-				stMin = 6;
-				stMax = 14;
-				peMin = 4;
-				peMax = 12;
-				enMin = 1;
-				enMax = 13;
-				chMin = 1;
-				chMax = 3;
-				inMin = 1;
-				inMax = 4;
-				agMin = 6;
-				agMax = 16;
-				lkMin = 1;
-				lkMax = 10;
-				statSt = 6;
-				statPe = 5;
-				statEn = 5;
-				statCh = 3;
-				statIn = 4;
-				statAg = 6;
-				statLk = 5;
-				statPool = 6;
-				racialElectricyResistance = 0;
-				racialRadiationResistance = 50;
-				racialPosionResistance = 20;
-				racialHpMod = 2;
-				racialPerkRate = 4;
-				racialDamageResistance = 25;
+				character.stMin = 6;
+				character.stMax = 14;
+				character.peMin = 4;
+				character.peMax = 12;
+				character.enMin = 1;
+				character.enMax = 13;
+				character.chMin = 1;
+				character.chMax = 3;
+				character.inMin = 1;
+				character.inMax = 4;
+				character.agMin = 6;
+				character.agMax = 16;
+				character.lkMin = 1;
+				character.lkMax = 10;
+				character.statSt = 6;
+				character.statPe = 5;
+				character.statEn = 5;
+				character.statCh = 3;
+				character.statIn = 4;
+				character.statAg = 6;
+				character.statLk = 5;
+				character.statPool = 6;
+				character.racialElectricResistance = 0;
+				character.racialRadiationResistance = 50;
+				character.racialPosionResistance = 20;
+				character.racialGasResistance = 0;
+				character.racialHpMod = 2;
+				character.racialPerkRate = 4;
+				character.racialDamageResistance = 25;
 			break;
 		}
-
-	}
-
-	function cacluateInitialStatPoints() {
-		if (chacaterSpecies == "human"){
-			$stats.each(function(index, element){
-				$(element).val(5);
-			});
-			$('#statPool').val(5);
-		}
+		calculateAndUpdateDom()
 	}
 
 	function setStatPointsFromDom() {
-		statSt = parseInt($('#strength').val());
-		statPe = parseInt($('#perception').val());
-		statEn = parseInt($('#endurance').val());
-		statCh = parseInt($('#charisma').val());
-		statIn = parseInt($('#intellegence').val());
-		statAg = parseInt($('#agility').val());
-		statLk = parseInt($('#luck').val());
+		character.statSt = parseInt($('#strength').val());
+		character.statPe = parseInt($('#perception').val());
+		character.statEn = parseInt($('#endurance').val());
+		character.statCh = parseInt($('#charisma').val());
+		character.statIn = parseInt($('#intellegence').val());
+		character.statAg = parseInt($('#agility').val());
+		character.statLk = parseInt($('#luck').val());
 		balanceStatPool();
 	}
 
 	function setStatPointsFromVars() {
-		$('#strength').val(statSt);
-		$('#perception').val(statPe);
-		$('#endurance').val(statEn);
-		$('#charisma').val(statCh);
-		$('#intellegence').val(statIn);
-		$('#agility').val(statAg);
-		$('#luck').val(statLk);
+		$('#strength').val(character.statSt);
+		$('#perception').val(character.statPe);
+		$('#endurance').val(character.statEn);
+		$('#charisma').val(character.statCh);
+		$('#intellegence').val(character.statIn);
+		$('#agility').val(character.statAg);
+		$('#luck').val(character.statLk);
 		balanceStatPool();
 	}
 
 	function validateStats() {
-		var currentTotalStats = statSt + statPe + statEn + statCh + statIn + statAg + statLk + statPool;
+		var currentTotalStats = character.statSt + 
+								character.statPe + 
+								character.statEn + 
+								character.statCh + 
+								character.statIn + 
+								character.statAg + 
+								character.statLk + 
+								character.statPool;
 		if (currentTotalStats == totalStats) {
 			return true;
 		} else {
@@ -328,12 +337,18 @@ $(document).ready(function(){
 	}
 
 	function balanceStatPool() {
-		statPool = totalStats - (statSt + statPe + statEn + statCh + statIn + statAg + statLk);
-		if (statPool < 0) {
-			$('#statPool').val(statPool);
+		character.statPool = character.totalStats - (	character.statSt + 
+											character.statPe + 
+											character.statEn + 
+											character.statCh + 
+											character.statIn + 
+											character.statAg + 
+											character.statLk);
+		if (character.statPool < 0) {
+			$('#statPool').val(character.statPool);
 			return false;
 		} else {
-			$('#statPool').val(statPool);
+			$('#statPool').val(character.statPool);
 			return true;
 		}
 	}
@@ -342,50 +357,63 @@ $(document).ready(function(){
 		var $target = $(target);
 		var newStatVal = $target.val(),
 			attributeName = $target.data('attrib');
-		if (newStatVal > statMax || newStatVal < statMin) {
-			setStatPointsFromVars();
-		} else {
+		if (attributeName == "statSt" && newStatVal >= character.stMin && newStatVal <= character.stMax) {
 			setStatPointsFromDom();
+		} else if (attributeName == "statPe" && newStatVal >= character.peMin && newStatVal <= character.peMax) {
+			setStatPointsFromDom();
+		} else if (attributeName == "statEn" && newStatVal >= character.enMin && newStatVal <= character.enMax) {
+			setStatPointsFromDom();
+		} else if (attributeName == "statCh" && newStatVal >= character.chMin && newStatVal <= character.chMax) {
+			setStatPointsFromDom();
+		} else if (attributeName == "statIn" && newStatVal >= character.inMin && newStatVal <= character.inMax) {
+			setStatPointsFromDom();
+		} else if (attributeName == "statAg" && newStatVal >= character.agMin && newStatVal <= character.agMax) {
+			setStatPointsFromDom();
+		} else if (attributeName == "statLk" && newStatVal >= character.lkMin && newStatVal <= character.lkMax) {
+			setStatPointsFromDom();
+		} else {
+			setStatPointsFromVars();
 		}
 		calculateSkills();
 		calculateDerives();
 	}
 
 	function updateSkillsToDom() {
-		$('#smallGuns').val(smallGuns);
-		$('#bigGuns').val(bigGuns);
-		$('#energyWeapons').val(energyWeapons);
-		$('#unarmed').val(unarmed);
-		$('#meleeWeapons').val(meleeWeapons);
-		$('#throwing').val(throwing);
-		$('#firstAid').val(firstAid);
-		$('#doctor').val(doctor);
-		$('#sneak').val(sneak);
-		$('#lockpick').val(lockpick);
-		$('#steal').val(steal);
-		$('#traps').val(traps);
-		$('#science').val(science);
-		$('#repair').val(repair);
-		$('#pilot').val(pilot);
-		$('#speech').val(speech);
-		$('#barter').val(barter);
-		$('#gambling').val(gambling);
-		$('#outdoorsman').val(outdoorsman);
+		$('#smallGuns').val(character.smallGuns);
+		$('#bigGuns').val(character.bigGuns);
+		$('#energyWeapons').val(character.energyWeapons);
+		$('#unarmed').val(character.unarmed);
+		$('#meleeWeapons').val(character.meleeWeapons);
+		$('#throwing').val(character.throwing);
+		$('#firstAid').val(character.firstAid);
+		$('#doctor').val(character.doctor);
+		$('#sneak').val(character.sneak);
+		$('#lockpick').val(character.lockpick);
+		$('#steal').val(character.steal);
+		$('#traps').val(character.traps);
+		$('#science').val(character.science);
+		$('#repair').val(character.repair);
+		$('#pilot').val(character.pilot);
+		$('#speech').val(character.speech);
+		$('#barter').val(character.barter);
+		$('#gambling').val(character.gambling);
+		$('#outdoorsman').val(character.outdoorsman);
+		$('#skillPool').val(character.skillPool);
 	}
 
 	function updateDerivesToDom() {
-		$('#actionPoints').val(actionPoints);
-		$('#carryWeight').val(carryWeight);
-		$('#baseMeleeDamage').val(baseMeleeDamage);
-		$('#poisonResist').val(poisonResist);
-		$('#radiationResist').val(radiationResist);
-		$('#gasResist').val(gasResist);
-		$('#electricResist').val(electricResist);
-		$('#sequence').val(sequence);
-		$('#healingRate').val(healingRate);
-		$('#criticalChance').val(criticalChance);
-		$('#baseAc').val(baseAc);
-		$('#maxHp').val(maxHp);
+		$('#actionPoints').val(character.actionPoints);
+		$('#carryWeight').val(character.carryWeight);
+		$('#baseMeleeDamage').val(character.baseMeleeDamage);
+		$('#poisonResist').val(character.poisonResist);
+		$('#radiationResist').val(character.radiationResist);
+		$('#gasResist').val(character.gasResist);
+		$('#electricResist').val(character.electricResist);
+		$('#sequence').val(character.sequence);
+		$('#healingRate').val(character.healingRate);
+		$('#criticalChance').val(character.criticalChance);
+		$('#baseAc').val(character.baseAc);
+		$('#maxHp').val(character.maxHp);
 	}
 
 	function calculateSkills() {
@@ -408,6 +436,7 @@ $(document).ready(function(){
 		calcBarter();
 		calcGambling();
 		calcOutdoorsman();
+		calcSkillPool();
 		updateSkillsToDom();
 	}
 
@@ -428,134 +457,141 @@ $(document).ready(function(){
 	}
 
 	function calcSmallGuns() {
-		smallGuns = 5 + (4 * statAg);
+		character.smallGuns = 5 + (4 * character.statAg);
 	}
 
 	function calcBigGuns() {
-		bigGuns = 0 + (2 * statAg);
+		character.bigGuns = 0 + (2 * character.statAg);
 	}
 
 	function calcEnergyWeapons() {
-		energyWeapons = 0 + (2 * statAg);
+		character.energyWeapons = 0 + (2 * character.statAg);
 	}
 
 	function calcUnarmed() {
-		unarmed = 30 + 2 * (statAg * statSt);
+		character.unarmed = 30 + 2 * (character.statAg * character.statSt);
 	}
 
 	function calcMeleeWeapons() {
-		meleeWeapons = 20 + 2 * (statAg * statSt);
+		character.meleeWeapons = 20 + 2 * (character.statAg * character.statSt);
 	}
 
 	function calcThrowing() {
-		throwing = 0 + (4 * statAg);
+		character.throwing = 0 + (4 * character.statAg);
 	}
 
 	function calcFirstAid() {
-		firstAid = 2 * (statPe + statIn);
+		character.firstAid = 2 * (character.statPe + character.statIn);
 	}
 
 	function calcDoctor() {
-		doctor = 5 + (statPe + statIn);
+		character.doctor = 5 + (character.statPe + character.statIn);
 	}
 
 	function calcSneak() {
-		sneak = 5 + (3 * statAg);
+		character.sneak = 5 + (3 * character.statAg);
 	}
 
 	function calcLockpick() {
-		lockpick = 10 + (statPe + statAg);
+		character.lockpick = 10 + (character.statPe + character.statAg);
 	}
 
 	function calcSteal() {
-		steal = 0 + (3 * statAg);
+		character.steal = 0 + (3 * character.statAg);
 	}
 	
 	function calcTraps() {
-		traps = 0 + (statPe + statAg);
+		character.traps = 0 + (character.statPe + character.statAg);
 	}
 	
 	function calcScience() {
-		science = 0 + (4 * statIn);
+		character.science = 0 + (4 * character.statIn);
 	}
 	
 	function calcRepair() {
-		repair = 0 + (3 * statIn);
+		character.repair = 0 + (3 * character.statIn);
 	}
 	
 	function calcPilot() {
-		pilot = 0 + (2 * (statAg + statPe));
+		character.pilot = 0 + (2 * (character.statAg + character.statPe));
 	}
 	
 	function calcSpeech() {
-		speech = 0 + (5 * statCh);
+		character.speech = 0 + (5 * character.statCh);
 	}
 	
 	function calcBarter() {
-		barter = 0 + (4 * statCh);
+		character.barter = 0 + (4 * character.statCh);
 	}
 	
 	function calcGambling() {
-		gambling = 0 + (5 * statLk);
+		character.gambling = 0 + (5 * character.statLk);
 	}
 
 	function calcOutdoorsman() {
-		outdoorsman = 0 + (2 * (statEn + statIn));
+		character.outdoorsman = 0 + (2 * (character.statEn + character.statIn));
+	}
+
+	function calcSkillPool() {
+		character.skillPool = 0;
 	}
 
 	function calcActionPoints() {
-		actionPoints = 5 + (statAg / 2);
+		character.actionPoints = Math.floor(5 + (character.statAg / 2));
 	}
 
 	function calcCarryWeight() {
-		carryWeight = 25 + (25 * statSt);
+		character.carryWeight = 25 + (25 * character.statSt);
 	}
 
 	function calcBaseMeleeDamage() {
-		baseMeleeDamage = statSt - 5;
-		if (baseMeleeDamage > 1 ) {
-			baseMeleeDamage = 1;
+		character.baseMeleeDamage = character.statSt - 5;
+		if (character.baseMeleeDamage < 1 ) {
+			character.baseMeleeDamage = 1;
 		}
 	}
 
 	function calcPoisonResist() {
-		poisonResist = 5 * statEn;
+		character.poisonResist = 0;
+		character.poisonResist = 5 * character.statEn + character.racialPosionResistance;
 	}
 
 	function calcRadiationResist() {
-		radiationResist = 2 * statEn;
+		character.radiationResist = 0;
+		character.radiationResist = 2 * character.statEn + character.racialPosionResistance;
 	}
 
 	function calcGasResist() {
-		gasResist = 0;
+		character.gasResist = 0;
+		character.gasResist = character.gasResist + character.racialGasResistance;
 	}
 
 	function calcElectricResist() {
-		if (chacaterSpecies == "human") {
-			electricResist = 10;
-		} else {
-			electricResist = 0;
-		}
+		character.electricResist = 0;
+		character.electricResist = character.electricResist + character.racialElectricResistance;
 	}
 
 	function calcSequence() {
-		sequence = 2 * statPe;
+		character.sequence = 2 * character.statPe;
 	}
 
 	function calcHealingRate() {
-		healingRate = 5 / statEn;
+		character.healingRate = Math.floor(character.statEn / 3);
 	}
 
 	function calcCriticalChance() {
-		criticalChance = statLk;	
+		character.criticalChance = character.statLk;	
 	}
 
 	function calcBaseAc() {
-		baseAc = 0;
+		character.baseAc = character.statAg;
 	}
 
 	function calcMaxHp() {
-		maxHp = 0;
+		character.maxHp = Math.floor(
+							15 + (character.statSt + (2 * character.statEn)) + 
+							(character.level * (3 + (character.statEn / 2) + character.racialHpMod))
+						);
 	}
 
-});
+})( jQuery );
