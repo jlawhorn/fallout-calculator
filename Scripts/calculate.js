@@ -47,6 +47,7 @@
 		barter : 0,
 		gambling : 0,
 		outdoorsman : 0,
+		taggedSkills: [],
 		skillPool : 0,
 		actionPoints : 0,
 		carryWeight : 0,
@@ -87,6 +88,13 @@
 
 	$('#calculator').on('submit', function(e){
 		e.preventDefault();
+	});
+
+	$('.tag').on('click', function(e){
+		if(processTags(this) == false){
+			e.preventDefault();
+		};
+		calculateSkills();
 	});
 
 	function initializeValues() {
@@ -453,83 +461,168 @@
 		calcCriticalChance();
 		calcBaseAc();
 		calcMaxHp();
-		updateDerivesToDom();
+		calculateSkills();
+	}
+
+	function processTags(target) {
+		var $tags = $('.tag');
+			$checkedTags = $('.tag:checked');
+
+		character.currentTagCount = $checkedTags.length;
+
+		if (character.currentTagCount > character.maxTags ){
+			return false;
+		} else {
+			$tags.each(function(index, element){
+				var currentTag = $(element).data('tag'),
+					elementChecked = $(element).attr('checked');
+					currentPositionInArray = character.taggedSkills.indexOf(currentTag);
+
+				if (elementChecked) {
+					if (!currentPositionInArray >= 0) {
+						character.taggedSkills[index] = currentTag;
+					}
+				} else {
+					if (currentPositionInArray >= 0) {
+						delete character.taggedSkills[currentPositionInArray];
+					}
+				}
+			});
+			return true;
+		}
 	}
 
 	function calcSmallGuns() {
 		character.smallGuns = 5 + (4 * character.statAg);
+		if (character.taggedSkills.indexOf("smallGuns") >= 0) {
+			character.smallGuns += 20;
+		}
 	}
 
 	function calcBigGuns() {
 		character.bigGuns = 0 + (2 * character.statAg);
+		if (character.taggedSkills.indexOf("bigGuns") >= 0) {
+			character.bigGuns += 20;
+		}
 	}
 
 	function calcEnergyWeapons() {
 		character.energyWeapons = 0 + (2 * character.statAg);
+		if (character.taggedSkills.indexOf("energyWeapons") >= 0) {
+			character.energyWeapons += 20;
+		}
 	}
 
 	function calcUnarmed() {
-		character.unarmed = 30 + 2 * (character.statAg * character.statSt);
+		character.unarmed = 30 + (2 * (character.statAg + character.statSt));
+		if (character.taggedSkills.indexOf("unarmed") >= 0) {
+			character.unarmed += 20;
+		}
 	}
 
 	function calcMeleeWeapons() {
 		character.meleeWeapons = 20 + 2 * (character.statAg * character.statSt);
+		if (character.taggedSkills.indexOf("meleeWeapons") >= 0) {
+			character.meleeWeapons += 20;
+		}
 	}
 
 	function calcThrowing() {
 		character.throwing = 0 + (4 * character.statAg);
+		if (character.taggedSkills.indexOf("throwing") >= 0) {
+			character.throwing += 20;
+		}
 	}
 
 	function calcFirstAid() {
 		character.firstAid = 2 * (character.statPe + character.statIn);
+		if (character.taggedSkills.indexOf("firstAid") >= 0) {
+			character.firstAid += 20;
+		}
 	}
 
 	function calcDoctor() {
 		character.doctor = 5 + (character.statPe + character.statIn);
+		if (character.taggedSkills.indexOf("doctor") >= 0) {
+			character.doctor += 20;
+		}
 	}
 
 	function calcSneak() {
 		character.sneak = 5 + (3 * character.statAg);
+		if (character.taggedSkills.indexOf("sneak") >= 0) {
+			character.sneak += 20;
+		}
 	}
 
 	function calcLockpick() {
 		character.lockpick = 10 + (character.statPe + character.statAg);
+		if (character.taggedSkills.indexOf("lockpick") >= 0) {
+			character.lockpick += 20;
+		}
 	}
 
 	function calcSteal() {
 		character.steal = 0 + (3 * character.statAg);
+		if (character.taggedSkills.indexOf("steal") >= 0) {
+			character.steal += 20;
+		}
 	}
 	
 	function calcTraps() {
 		character.traps = 0 + (character.statPe + character.statAg);
+		if (character.taggedSkills.indexOf("traps") >= 0) {
+			character.traps += 20;
+		}
 	}
 	
 	function calcScience() {
 		character.science = 0 + (4 * character.statIn);
+		if (character.taggedSkills.indexOf("science") >= 0) {
+			character.science += 20;
+		}
 	}
 	
 	function calcRepair() {
 		character.repair = 0 + (3 * character.statIn);
+		if (character.taggedSkills.indexOf("repair") >= 0) {
+			character.repair += 20;
+		}
 	}
 	
 	function calcPilot() {
 		character.pilot = 0 + (2 * (character.statAg + character.statPe));
+		if (character.taggedSkills.indexOf("pilot") >= 0) {
+			character.pilot += 20;
+		}
 	}
 	
 	function calcSpeech() {
 		character.speech = 0 + (5 * character.statCh);
+		if (character.taggedSkills.indexOf("speech") >= 0) {
+			character.speech += 20;
+		}
 	}
 	
 	function calcBarter() {
 		character.barter = 0 + (4 * character.statCh);
+		if (character.taggedSkills.indexOf("barter") >= 0) {
+			character.barter += 20;
+		}
 	}
 	
 	function calcGambling() {
 		character.gambling = 0 + (5 * character.statLk);
+		if (character.taggedSkills.indexOf("gambling") >= 0) {
+			character.gambling += 20;
+		}
 	}
 
 	function calcOutdoorsman() {
 		character.outdoorsman = 0 + (2 * (character.statEn + character.statIn));
+		if (character.taggedSkills.indexOf("outdoorsman") >= 0) {
+			character.outdoorsman += 20;
+		}
 	}
 
 	function calcSkillPool() {
@@ -572,11 +665,14 @@
 	}
 
 	function calcSequence() {
-		character.sequence = 2 * character.statPe;
+		character.sequence = (2 * character.statPe) + character.level;
 	}
 
 	function calcHealingRate() {
 		character.healingRate = Math.floor(character.statEn / 3);
+		if (character.healingRate < 1) {
+			character.healingRate = 1;
+		}
 	}
 
 	function calcCriticalChance() {
