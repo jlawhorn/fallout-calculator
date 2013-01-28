@@ -61,6 +61,7 @@
 		criticalChance : 0,
 		baseAc : 0,
 		maxHp : 0,
+		baseDr : 0,
 		racialElectricResistance : 0,
 		racialRadiationResistance : 0,
 		racialPosionResistance : 0,
@@ -99,9 +100,7 @@
 
 	function initializeValues() {
 		updateSpecies(character.species);
-		setStatPointsFromVars();
-		calculateSkills();
-		calculateDerives();
+		calculateAndUpdateDom();
 	}
 
 	function calculateAndUpdateDom(){
@@ -382,8 +381,7 @@
 		} else {
 			setStatPointsFromVars();
 		}
-		calculateSkills();
-		calculateDerives();
+		calculateAndUpdateDom();
 	}
 
 	function updateSkillsToDom() {
@@ -421,6 +419,7 @@
 		$('#healingRate').val(character.healingRate);
 		$('#criticalChance').val(character.criticalChance);
 		$('#baseAc').val(character.baseAc);
+		$('#baseDr').val(character.baseDr);
 		$('#maxHp').val(character.maxHp);
 	}
 
@@ -461,7 +460,8 @@
 		calcCriticalChance();
 		calcBaseAc();
 		calcMaxHp();
-		calculateSkills();
+		calcBaseDr();
+		updateDerivesToDom();
 	}
 
 	function processTags(target) {
@@ -521,7 +521,7 @@
 	}
 
 	function calcMeleeWeapons() {
-		character.meleeWeapons = 20 + 2 * (character.statAg * character.statSt);
+		character.meleeWeapons = 20 + (2 * (character.statAg + character.statSt));
 		if (character.taggedSkills.indexOf("meleeWeapons") >= 0) {
 			character.meleeWeapons += 20;
 		}
@@ -570,7 +570,7 @@
 	}
 	
 	function calcTraps() {
-		character.traps = 0 + (character.statPe + character.statAg);
+		character.traps = 10 + (character.statPe + character.statAg);
 		if (character.taggedSkills.indexOf("traps") >= 0) {
 			character.traps += 20;
 		}
@@ -626,7 +626,7 @@
 	}
 
 	function calcSkillPool() {
-		character.skillPool = 0;
+		character.skillPool = 5 + (2 * character.statIn);
 	}
 
 	function calcActionPoints() {
@@ -681,6 +681,11 @@
 
 	function calcBaseAc() {
 		character.baseAc = character.statAg;
+	}
+
+	function calcBaseDr() {
+		character.baseDr = 0;
+		character.baseDr + character.racialDamageResistance;
 	}
 
 	function calcMaxHp() {
