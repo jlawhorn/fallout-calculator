@@ -584,7 +584,7 @@
 	}
 	
 	function calcRepair() {
-		character.repair = 0 + (3 * character.statIn);
+		character.repair = 10 + (3 * character.statIn);
 		if (character.taggedSkills.indexOf("repair") >= 0) {
 			character.repair += 20;
 		}
